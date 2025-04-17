@@ -5,6 +5,42 @@ Abstract— This project presents a novel framework that enhances large language
 
 ![iee paper ff](https://github.com/user-attachments/assets/e10013ed-bd33-482e-9715-99299c37db2e)
 
+For a document T of length L, the ith chunk in a configuration with chunk size c and overlap o is defined as: 
+
+Ti = T [i × (c − o): i × (c − o) + c], i ∈ {0, 1, …, N−1}, 
+
+with the total number of chunks N given by: 
+
+ N= [c – o / L − o]  
+ 
+ This overlapping scheme ensures continuity between chunks, which is crucial for preserving context at boundaries [15].  
+
+ Let femb : Text → Rd denote the embedding function. For each chunk Ti , we compute: 
+ 
+ei = femb (Ti), 
+    
+where ei ∈ Rd and d is the embedding dimension. The embeddings are computed in batches to leverage parallel processing capabilities. 
+
+The computed embeddings for the broad and narrow contexts are organized into matrices: 
+
+  Eb = [e1b, e2b, …, eNbb], En=[e1n,e2n,…,eNnn], 
+       
+where Nb and Nn denote the number of chunks for the broad and narrow configurations, respectively. We then construct separate FAISS indices Ib and In using an L2 distance metric. Given a query embedding eq , the similarity score between eq and a chunk embedding ei  is:
+
+d (eq, ei) = ∥eq − ei∥22 
+
+At query time, a user-provided query Q is first converted to its embedding eq using the same embedding function femb. We then query both indices independently: 
+
+Rb= FAISS-Query (Ib, eq, kb), Rn=FAISS-Query (In, eq, kn). 
+
+Here, Rb  and Rn represent the sets of retrieved chunks from the broad and narrow indices, respectively. 
+
+To merge these retrievals, we define a fusion function F that combines the outputs into a single context Cf for the LLM. A simple yet effective fusion strategy is the union of the two sets followed by deduplication: 
+
+Cf = F (Rb, Rn) = ⋃ {r ∣ r ∈ Rb ∪ Rn}. 
+
+More sophisticated fusion mechanisms (e.g., weighted averaging or attention-based merging) can also be considered, but our experiments demonstrate that even a straightforward union yields significant improvements 
+
 
 
 
