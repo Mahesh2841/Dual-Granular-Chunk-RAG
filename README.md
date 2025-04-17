@@ -44,6 +44,9 @@ More sophisticated fusion mechanisms (e.g., weighted averaging or attention-base
 
 
 
+
+
+
 Enhancing Retrieval-Augmented Generation via
 Dual-Granularity Document Indexing, IEEE International Conference on Computing for Sustainability and Intelligent Future (CompSIF 2025), Bangalore Section
 • Designed and implemented a novel dual-granularity retrieval-augmentation strategy integrating
