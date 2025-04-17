@@ -5,3 +5,16 @@ Abstract— This project presents a novel framework that enhances large language
 
 ![iee paper ff](https://github.com/user-attachments/assets/e10013ed-bd33-482e-9715-99299c37db2e)
 
+
+
+
+Enhancing Retrieval-Augmented Generation via
+Dual-Granularity Document Indexing, IEEE International Conference on Computing for Sustainability and Intelligent Future (CompSIF 2025), Bangalore Section
+• Designed and implemented a novel dual-granularity retrieval-augmentation strategy integrating
+multi-granular chunking and ensemble semantic indexing (FAISS-based vector search), significantly improving the precision (87%) and recall (73%) of retrieval-augmented Large Language
+Models (LLMs).
+• Proposed an ensemble fusion mechanism that merges broad and narrow contexts into a unified
+retrieval pipeline, providing a comprehensive dual-layered context that enhances the accuracy
+and contextual relevance of LLM-generated responses.
+• Awarded Best Paper for technical innovation and significant contribution to knowledge retrieval
+and NLP systems at CompSIF 2025, IEEE Bangalore Section.
