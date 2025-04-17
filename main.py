@@ -15,7 +15,7 @@ import fitz
 import gradio as gr
 
 
-llm = OllamaLLM(model="llama3.2:1b")
+llm = OllamaLLM(model="model_name")
 
 PROMPT_TEMPLATE = """You are an expert assistant tasked with providing accurate, precise, short and relevant responses based on the given document content. The answer should be short, precise, accurate and should be correct always. Focus on answering questions directly related to the specified sections or tables from the document provided. strictly do not include DOCUMENT NUMBER, SECTION NUMBER, REVIEW, etc. EVERY TIME NEW QUERY/PROMPT IS ASKED THE RESPONSE SHOULD BE SHORT, PRECISE AND ACCURATE ALWAYS.
 
@@ -37,7 +37,7 @@ pdf_paths = [
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
 split_configs = [
-    {"chunk_size": 1500, "chunk_overlap": 200},  
+    {"chunk_size": 1500, "chunk_overlap": 200},  # set according to the complexity of your document
     {"chunk_size": 600, "chunk_overlap": 100}    
 ]
 
